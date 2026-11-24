@@ -111,7 +111,163 @@ CLI stands for Command Line Interface. It allows users to interact with a comput
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-## 3. Node.js vs Browser JavaScript
+## 3. Node.js Modules
+Module is a reusable piece of code that we can use in different files of our project.
+
+**1. CommonJS Modules and ES Modules** <br>
+**Example**
+Suppose you are creating a project. In that project:
+- app.js — Main file
+- math.js — Mathematical functions
+- user.js — User-related functions
+  
+**Importing and exporting modules**
+```
+                          Old module system       Modern module system
+                             CommonJS                       ES
+Import a module   ->         require()                    import
+Export a module   ->       module.exports                 export
+```
+
+**in package.json file**
+```
+1. "type": "module"   →   ES Modules (import/export) use kar sakte hain.
+2. "type": "commonjs"   →   CommonJS (require/module.exports) use kar sakte hain.
+```
+
+ **2. Types of Node.js Modules**<br>
+- Built-in  ->  Already provided by Node.js
+- Custom   ->   Created by developers
+- Third-party   -  Installed separately
+
+ **Built-in Modules**<br>
+Built-in modules are modules that come pre-installed with Node.js.
+```
+Module        	Purpose
+fs	      ->    Files handle karna
+path	  ->    File paths manage karna
+http	  ->    HTTP server create karna
+os	      ->    Operating system information
+events	  ->    Events handle karna
+crypto	  ->    Encryption aur hashing
+url	      ->    URLs handle karna
+stream	  ->    Data ko chunks mein handle karna
+buffer	  ->    Binary data handle karna
+```
+
+**Custom Modules**<br>
+Custom modules are modules that developers create themselves according to their project requirements.
+```
+
+myProject/
+│
+├── index.js
+└── math.js     ->  module
+
+```
+
+
+ **Third-party Modules**<br>
+Third-party modules are packages created by other developers and installed separately to use in our projects.
+```
+Package	      Purpose
+Express	      Backend server aur routing
+Mongoose	  MongoDB ke saath work karna
+dotenv	      Environment variables manage karna
+cors	      Cross-origin requests control karna
+bcrypt	      Password hashing
+nodemon	      Development mein server restart karna
+```
+
+When we install a third-party package, npm creates a "node_modules" folder inside the project.
+- **node_modules** → Installed packages aur unki dependencies contain karta hai.
+- **package.json** → Project information aur dependencies contain karta hai.
+- **package-lock.json** → Installed dependencies ki exact versions aur dependency tree record karta hai.
+
+
+
+**3. require(), module.exports, exports, import and export**
+
+**What is module.exports?**
+module.exports is used to export code from a CommonJS module so that other files can use it.
+
+Example:<br>
+**math.js file**
+```js
+function add(a, b) {
+    return a + b;
+}
+
+module.exports = add;
+```
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+**What is require()?**
+require() is used to import code from another file or module in CommonJS.
+
+Example:<br>
+**app.js file**
+```js
+const add = require("./math");
+
+console.log(add(10, 20));
+```
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+**4. Named Exports and Default Exports**<br>
+*math.js file*
+```JS
+// DEFAULT-EXPORT
+function add(a, b) {
+    return a + b
+}
+
+module.exports = add;
+
+// NAME-EXPORT
+function add2(a, b) {
+    return a + b
+}
+
+let myname = "atruba";
+
+module.exports = { add2, myname };
+```
+
+
+
+
+*index.js file*
+```js
+// DEFAULT-EXPORT
+const add = require("./math.js");
+console.log(add(10,20));
+
+// NAME-EXPORT
+const { myname, add2 } = require("./math");
+
+console.log(add2(10,10));
+console.log(myname);
+```
+
+
+
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
 
 
 
