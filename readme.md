@@ -217,7 +217,7 @@ console.log(globalThis.process);
 
 Module is a reusable piece of code that we can use in different files of our project.
 
-## 4.1 CommonJS Modules and ES Modules
+## 5.1 CommonJS Modules and ES Modules
 
 ### Example
 
@@ -239,13 +239,13 @@ Suppose you are creating a project. In that project:
 1. `"type": "module"` → ES Modules (import/export) use kar sakte hain.
 2. `"type": "commonjs"` → CommonJS (require/module.exports) use kar sakte hain.
 
-## 4.2 Types of Node.js Modules
+## 5.2 Types of Node.js Modules
 
 - **Built-in:** Already provided by Node.js.
 - **Custom:** Created by developers.
 - **Third-party:** Installed separately.
 
-### 4.2.1 Built-in Modules
+### 5.2.1 Built-in Modules
 
 Built-in modules are modules that come pre-installed with Node.js.
 
@@ -261,7 +261,7 @@ Built-in modules are modules that come pre-installed with Node.js.
 | `stream` | Data ko chunks mein handle karna |
 | `buffer` | Binary data handle karna         |
 
-### 4.2.2 Custom Modules
+### 5.2.2 Custom Modules
 
 Custom modules are modules that developers create themselves according to their project requirements.
 
@@ -272,7 +272,7 @@ myProject/
 └── math.js
 ```
 
-### 4.2.3 Third-party Modules
+### 5.2.3 Third-party Modules
 
 Third-party modules are packages created by other developers and installed separately to use in our projects.
 
@@ -291,7 +291,7 @@ When we install a third-party package, npm creates a `node_modules` folder insid
 - **package.json** → Project information aur dependencies contain karta hai.
 - **package-lock.json** → Installed dependencies ki exact versions aur dependency tree record karta hai.
 
-## 4.3 require(), module.exports, exports, import and export
+## 5.3 require(), module.exports, exports, import and export
 
 ### What is module.exports?
 
@@ -319,7 +319,7 @@ const add = require("./math");
 console.log(add(10, 20));
 ```
 
-## 4.4 Named Exports and Default Exports
+## 5.4 Named Exports and Default Exports
 
 **math.js file**
 
@@ -357,7 +357,7 @@ console.log(myname);
 
 ---
 
-# 5. Important Node.js Built-in Modules
+# 6. Important Node.js Built-in Modules
 
-## 5.1 FS Module (File System)
+## 6.1 FS Module (File System)
 The fs module allows us to create, read, update and delete files and directories.
