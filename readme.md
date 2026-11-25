@@ -213,31 +213,8 @@ console.log(globalThis.process);
 
 
 
-# 5. Node.js Modules
-
+# 5. Modules: built-in, core, custom and third-party
 Module is a reusable piece of code that we can use in different files of our project.
-
-## 5.1 CommonJS Modules and ES Modules
-
-### Example
-
-Suppose you are creating a project. In that project:
-
-- `app.js` — Main file
-- `math.js` — Mathematical functions
-- `user.js` — User-related functions
-
-### Importing and Exporting Modules
-
-| Operation       | CommonJS         | ES Modules |
-| --------------- | ---------------- | ---------- |
-| Import a module | `require()`      | `import`   |
-| Export a module | `module.exports` | `export`   |
-
-### In package.json File
-
-1. `"type": "module"` → ES Modules (import/export) use kar sakte hain.
-2. `"type": "commonjs"` → CommonJS (require/module.exports) use kar sakte hain.
 
 ## 5.2 Types of Node.js Modules
 
@@ -291,7 +268,43 @@ When we install a third-party package, npm creates a `node_modules` folder insid
 - **package.json** → Project information aur dependencies contain karta hai.
 - **package-lock.json** → Installed dependencies ki exact versions aur dependency tree record karta hai.
 
-## 5.3 require(), module.exports, exports, import and export
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+## 6 CommonJS Modules and ES Modules
+
+### Example
+
+Suppose you are creating a project. In that project:
+
+- `app.js` — Main file
+- `math.js` — Mathematical functions
+- `user.js` — User-related functions
+
+### Importing and Exporting Modules
+
+| Operation       | CommonJS         | ES Modules |
+| --------------- | ---------------- | ---------- |
+| Import a module | `require()`      | `import`   |
+| Export a module | `module.exports` | `export`   |
+
+### In package.json File
+
+1. `"type": "module"` → ES Modules (import/export) use kar sakte hain.
+2. `"type": "commonjs"` → CommonJS (require/module.exports) use kar sakte hain.
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+## 7 require(), module.exports, exports, import and export
 
 ### What is module.exports?
 
@@ -319,7 +332,7 @@ const add = require("./math");
 console.log(add(10, 20));
 ```
 
-## 5.4 Named Exports and Default Exports
+## 8 Named Exports and Default Exports
 
 **math.js file**
 
@@ -355,7 +368,8 @@ console.log(add2(10,10));
 console.log(myname);
 ```
 
----
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 # 6. Important Node.js Built-in Modules
 

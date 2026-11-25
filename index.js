@@ -17,6 +17,12 @@
 // globalThis.console.log(module);
 // globalThis.console.log(globalThis.process);   // equavalent to   ->  globalThis.console.log(window.document); 
 // globalThis.console.log(process);   // equavalent to   ->  globalThis.console.log(document); 
-console.log(globalThis.global);
+// console.log(globalThis.global);
+
+
+
+
+
+// ===================================================================================================================================================================
 
 
