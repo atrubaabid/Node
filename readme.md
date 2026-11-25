@@ -6,7 +6,12 @@
 1. [Node.js Introduction](#1-nodejs-introduction)
 2. [Node.js Installation](#2-nodejs-installation)
 3. [Node.js REPL and CLI](#3-nodejs-repl-and-cli)
-4. [Node.js Modules](#4-nodejs-modules)
+4. [Node.js vs Browser JavaScript](#4-nodejs-vs-browser-javascript)
+5. [Modules: Built-in, Core, Custom and Third-party](#5-modules-built-in-core-custom-and-third-party)
+6. [CommonJS Modules and ES Modules](#6-commonjs-modules-and-es-modules)
+7. [require(), module.exports, exports, import and export](#7-require-moduleexports-exports-import-and-export)
+8. [Named Exports and Default Exports](#8-named-exports-and-default-exports)
+9. [Important Node.js Built-in Modules](#9-important-nodejs-built-in-modules)
 
 ---
 
@@ -49,7 +54,7 @@ Node.js architecture explains how Node.js receives requests, executes JavaScript
 5. **libuv:** Provides asynchronous I/O and event loop functionality.
 6. **Thread Pool:** Handles certain background tasks.
 
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---
 
 # 2. Node.js Installation
 
@@ -77,11 +82,11 @@ npm stands for Node Package Manager. It is used to install and manage packages i
 
 ## 2.3 Node.js vs NPM
 
-| Node.js                      | NPM                              |
-| ---------------------------- | -------------------------------- |
-| JavaScript runtime           | Package manager                  |
-| JS run karta hai             | Packages install karta hai       |
-| Backend mein use hota hai    | Dependencies manage karta hai    |
+| Node.js | NPM |
+|---|---|
+| JavaScript runtime | Package manager |
+| JS run karta hai | Packages install karta hai |
+| Backend mein use hota hai | Dependencies manage karta hai |
 | Server create kar sakte hain | Libraries install kar sakte hain |
 
 ## 2.4 Important Commands
@@ -92,7 +97,7 @@ npm stands for Node Package Manager. It is used to install and manage packages i
 - `node` — Open Node.js REPL.
 - `Ctrl + C` — Stop a running process or exit REPL.
 
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---
 
 # 3. Node.js REPL and CLI
 
@@ -134,133 +139,136 @@ CLI stands for Command Line Interface. It allows users to interact with a comput
 5. **node --help** — Displays Node.js help.
 6. **node --watch index.js** — Automatically restarts the program when files change.
 
+---
 
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # 4. Node.js vs Browser JavaScript
 
 ## 4.1 What is Browser JavaScript?
+
 Browser JavaScript is JavaScript that runs inside a web browser, such as Google Chrome, Firefox, or Microsoft Edge.
 
-**Browser JavaScript Global Objects**
+### Browser JavaScript Global Objects
 
-| Global Objects | Purpose                                         |
-| -------------- | ----------------------------------------------- |
-| window         | Represents the browser window.                  |
-| document       | Provides access to the HTML document (webpage). |
+| Global Objects | Purpose |
+|---|---|
+| window | Represents the browser window. |
+| document | Provides access to the HTML document (webpage). |
 
-**Example:**
+### Example:
+
 ```js
 // in browser
-console.log(window);   // → Works
+
+console.log(window);    // → Works
 console.log(document);  // → Works
 
-// in node.js
-console.log(global);   // →  Not available by default (ReferenceError)
-console.log(process);  // →  Not available by default (ReferenceError)
+console.log(global);    // → Not available by default (ReferenceError)
+console.log(process);   // → Not available by default (ReferenceError)
 ```
-
-
-
 
 ## 4.2 What is Node.js?
+
 Node.js is a JavaScript runtime environment that allows us to run JavaScript outside the browser.
 
-**Node.js ke Global Objects**
+### Node.js ke Global Objects
 
-| Global Objects | Purpose                                         |
-| -------------- | ----------------------------------------------- |
-| global         | Represents the global object in Node.js.     |
-| process       | Provides information about and the current Node.js process. |
+| Global Objects | Purpose |
+|---|---|
+| global | Represents the global object in Node.js. |
+| process | Provides information about and the current Node.js process. |
 
+### Example:
 
-**Example:**
 ```js
-// in browser
-console.log(window);   // → Not available (ReferenceError)
+// in node.js
+
+console.log(window);    // → Not available (ReferenceError)
 console.log(document);  // → Not available (ReferenceError)
 
-// in node.js
-console.log(global);   // → Works
-console.log(process);  // → Works
+console.log(global);    // → Works
+console.log(process);   // → Works
 ```
 
+`globalThis` -> Modern JavaScript mein globalThis bhi hota hai, jo browser aur Node.js dono mein global object ko access karne ka standard tareeqa hai.
 
-`globalThis`  ->  Modern JavaScript mein globalThis bhi hota hai, jo browser aur Node.js dono mein global object ko access karne ka standard tareeqa hai.
 ```js
 // in browser
-console.log(globalThis);   //   ->  return Window object
+
+console.log(globalThis);   // -> return Window object
 
 // in node.js
-console.log(globalThis);   // ->  return global object
+
+console.log(globalThis);   // -> return global object
 ```
 
-**IN BROWSER**
+### IN BROWSER
+
 ```js
 console.log(globalThis.window);
+
 console.log(globalThis.document);
 ```
 
-**IN NODE.JS**
+### IN NODE.JS
+
 ```js
 console.log(globalThis.global);
+
 console.log(globalThis.process);
 ```
 
+---
 
+# 5. Modules: Built-in, Core, Custom and Third-party
 
-
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-# 5. Modules: built-in, core, custom and third-party
 Module is a reusable piece of code that we can use in different files of our project.
 
-## 5.2 Types of Node.js Modules
+## 5.1 Types of Node.js Modules
 
 - **Built-in:** Already provided by Node.js.
 - **Custom:** Created by developers.
 - **Third-party:** Installed separately.
 
-### 5.2.1 Built-in Modules
+### 5.1.1 Built-in Modules
 
 Built-in modules are modules that come pre-installed with Node.js.
 
-| Module   | Purpose                          |
-| -------- | -------------------------------- |
-| `fs`     | Files handle karna               |
-| `path`   | File paths manage karna          |
-| `http`   | HTTP server create karna         |
-| `os`     | Operating system information     |
-| `events` | Events handle karna              |
-| `crypto` | Encryption aur hashing           |
-| `url`    | URLs handle karna                |
+| Module | Purpose |
+|---|---|
+| `fs` | Files handle karna |
+| `path` | File paths manage karna |
+| `http` | HTTP server create karna |
+| `os` | Operating system information |
+| `events` | Events handle karna |
+| `crypto` | Encryption aur hashing |
+| `url` | URLs handle karna |
 | `stream` | Data ko chunks mein handle karna |
-| `buffer` | Binary data handle karna         |
+| `buffer` | Binary data handle karna |
 
-### 5.2.2 Custom Modules
+### 5.1.2 Custom Modules
 
 Custom modules are modules that developers create themselves according to their project requirements.
 
 ```text
 myProject/
+
 │
 ├── index.js
 └── math.js
 ```
 
-### 5.2.3 Third-party Modules
+### 5.1.3 Third-party Modules
 
 Third-party modules are packages created by other developers and installed separately to use in our projects.
 
-| Package  | Purpose                               |
-| -------- | ------------------------------------- |
-| Express  | Backend server aur routing            |
-| Mongoose | MongoDB ke saath work karna           |
-| dotenv   | Environment variables manage karna    |
-| cors     | Cross-origin requests control karna   |
-| bcrypt   | Password hashing                      |
-| nodemon  | Development mein server restart karna |
+| Package | Purpose |
+|---|---|
+| Express | Backend server aur routing |
+| Mongoose | MongoDB ke saath work karna |
+| dotenv | Environment variables manage karna |
+| cors | Cross-origin requests control karna |
+| bcrypt | Password hashing |
+| nodemon | Development mein server restart karna |
 
 When we install a third-party package, npm creates a `node_modules` folder inside the project.
 
@@ -268,16 +276,11 @@ When we install a third-party package, npm creates a `node_modules` folder insid
 - **package.json** → Project information aur dependencies contain karta hai.
 - **package-lock.json** → Installed dependencies ki exact versions aur dependency tree record karta hai.
 
+---
 
+# 6. CommonJS Modules and ES Modules
 
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-
-## 6 CommonJS Modules and ES Modules
-
-### Example
+## Example
 
 Suppose you are creating a project. In that project:
 
@@ -287,44 +290,41 @@ Suppose you are creating a project. In that project:
 
 ### Importing and Exporting Modules
 
-| Operation       | CommonJS         | ES Modules |
-| --------------- | ---------------- | ---------- |
-| Import a module | `require()`      | `import`   |
-| Export a module | `module.exports` | `export`   |
+| Operation | CommonJS | ES Modules |
+|---|---|---|
+| Import a module | `require()` | `import` |
+| Export a module | `module.exports` | `export` |
 
 ### In package.json File
 
 1. `"type": "module"` → ES Modules (import/export) use kar sakte hain.
 2. `"type": "commonjs"` → CommonJS (require/module.exports) use kar sakte hain.
 
+---
 
+# 7. require(), module.exports, exports, import and export
 
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-
-## 7 require(), module.exports, exports, import and export
-
-### What is module.exports?
+## What is module.exports?
 
 module.exports is used to export code from a CommonJS module so that other files can use it.
 
-**math.js file**
+### math.js file
 
 ```js
 function add(a, b) {
+
     return a + b;
+
 }
 
 module.exports = add;
 ```
 
-### What is require()?
+## What is require()?
 
 require() is used to import code from another file or module in CommonJS.
 
-**app.js file**
+### app.js file
 
 ```js
 const add = require("./math");
@@ -332,21 +332,29 @@ const add = require("./math");
 console.log(add(10, 20));
 ```
 
-## 8 Named Exports and Default Exports
+---
 
-**math.js file**
+# 8. Named Exports and Default Exports
+
+### math.js file
 
 ```js
 // DEFAULT-EXPORT
+
 function add(a, b) {
+
     return a + b
+
 }
 
 module.exports = add;
 
 // NAME-EXPORT
+
 function add2(a, b) {
+
     return a + b
+
 }
 
 let myname = "atruba";
@@ -354,24 +362,28 @@ let myname = "atruba";
 module.exports = { add2, myname };
 ```
 
-**index.js file**
+### index.js file
 
 ```js
 // DEFAULT-EXPORT
+
 const add = require("./math.js");
+
 console.log(add(10,20));
 
 // NAME-EXPORT
+
 const { myname, add2 } = require("./math");
 
 console.log(add2(10,10));
+
 console.log(myname);
 ```
 
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---
 
+# 9. Important Node.js Built-in Modules
 
-# 6. Important Node.js Built-in Modules
+## 9.1 FS Module (File System)
 
-## 6.1 FS Module (File System)
 The fs module allows us to create, read, update and delete files and directories.
